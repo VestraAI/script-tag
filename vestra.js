@@ -66,16 +66,15 @@ Vestra.search = class {
             this.searchDisclaimer.style.setProperty('position', 'absolute');
             this.searchDisclaimer.style.setProperty('visibility', 'hidden');
             this.searchDisclaimer.style.setProperty('display', 'none');
-            this.searchDisclaimer.style.setProperty('transform', `translateY(${this.input?.offsetHeight}px)`);
             Object.assign(this.searchDisclaimer.style, {
                 fontSize: '0.8rem',
                 color: 'black',
                 backgroundColor: '#fff',
-                paddingTop: '1rem',
-                paddingBottom: '1rem',
                 borderBottomLeftRadius: this.input.style.borderTopLeftRadius,
                 borderBottomRightRadius: this.input.style.borderTopRightRadius,
                 border: '1px solid #ccc',
+                paddingBottom: '1rem',
+                paddingTop: '1rem',
                 textAlign: 'center',
                 width: this.input?.offsetWidth - 2 + 'px'
             });
@@ -111,11 +110,13 @@ Vestra.search = class {
         this.input.addEventListener('focusin', (e) => {
             searchDisclaimer.style.setProperty('visibility', 'visible');
             searchDisclaimer.style.setProperty('display', 'block');
+            this.searchDisclaimer.style.setProperty('bottom', `calc( -0.8rem - ${this.searchDisclaimer?.offsetHeight}px)`);
         });
         this.input.addEventListener('focusout', (e) => {
             if(e.relatedTarget === vestraTermsRef) return;
             searchDisclaimer.style.setProperty('visibility', 'hidden');
             searchDisclaimer.style.setProperty('display', 'none');
+            this.searchDisclaimer.style.setProperty('bottom', `calc( -0.8rem - ${this.searchDisclaimer?.offsetHeight}px)`);
         });
         this.searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
